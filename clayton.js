@@ -605,8 +605,13 @@ class Clayton {
 
 async function wait(seconds) {
   for (let i = seconds; i > 0; i--) {
-    process.stdout.write(`\r${colors.cyan(`[*] Chờ ${Math.floor(i / 60)} phút ${i % 60} giây để tiếp tục`)}`.padEnd(80));
+    process.stdout.write(`\r${colors.cyan(`[*] Waiting ${Math.floor(i / 60)} minutes ${i % 60} seconds to continue`)}`.padEnd(80));
     await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+}
+
+// Set wait time to 15 minutes (15 * 60 seconds)
+wait(15 * 60);
   }
   readline.cursorTo(process.stdout, 0);
   readline.clearLine(process.stdout, 0);
@@ -614,7 +619,7 @@ async function wait(seconds) {
 }
 
 async function main() {
-  console.log(colors.yellow("(https://t.me/D4rkCipherX)"));
+  console.log(colors.yellow("(https://t.me/scripthub00)"));
 
   const { endpoint: hasIDAPI, message } = await checkBaseUrl();
   if (!hasIDAPI) return console.log(`Could not find API ID, try again later!`.red);
@@ -622,7 +627,7 @@ async function main() {
 
   const dataFile = path.join(__dirname, "data.txt");
   const data = fs.readFileSync(dataFile, "utf8").replace(/\r/g, "").split("\n").filter(Boolean);
-  const waitTime = settings.TIME_SLEEP * 60 * 60;
+  const waitTime = settings.TIME_SLEEP * 15 * 60;
   while (true) {
     for (let i = 0; i < data.length; i += maxThreads) {
       const batch = data.slice(i, i + maxThreads);
@@ -638,7 +643,7 @@ async function main() {
         const client = new Clayton(accountIndex, initData, session_name, hasIDAPI);
         client.set_headers();
 
-        return timeout(client.processAccount(), 60 * 60 * 1000).catch((err) => {
+        return timeout(client.processAccount(), 15 * 60 * 1000).catch((err) => {
           client.log(`Account processing error: ${err.message}`, "error");
         });
       });
