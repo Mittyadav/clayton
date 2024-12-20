@@ -605,17 +605,12 @@ class Clayton {
 
 async function wait(seconds) {
   for (let i = seconds; i > 0; i--) {
-    process.stdout.write(`\r${colors.cyan(`[*] Waiting ${Math.floor(i / 60)} minutes ${i % 60} seconds to continue`)}`.padEnd(80));
+    process.stdout.write(`\r${colors.cyan(`[*] wait ${Math.floor(i / 60)} phút ${i % 60} "seconds to continue`)}`.padEnd(80));
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  // Move the cursor and clear the line after the countdown ends
   readline.cursorTo(process.stdout, 0);
   readline.clearLine(process.stdout, 0);
   console.log(`Start new loop...`);
-}
-
-// Set wait time to 15 minutes (15 * 60 seconds)
-wait(15 * 60);
 }
 
 async function main() {
