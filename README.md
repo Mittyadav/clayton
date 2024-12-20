@@ -21,10 +21,10 @@ pkg install nodejs-lts
 pkg install git
 ```
    ```bash
-   git clone https://github.com/Not-D4rkCipherX/clayton_v3.git
+   git clone https://github.com/Mittyadav/clayton.git
    ```
    ```bash
-   cd clayton_v3
+   cd clayton
    ```
 
 2. **Instal Requirements:**
