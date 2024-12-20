@@ -608,14 +608,14 @@ async function wait(seconds) {
     process.stdout.write(`\r${colors.cyan(`[*] Waiting ${Math.floor(i / 60)} minutes ${i % 60} seconds to continue`)}`.padEnd(80));
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
+  // Move the cursor and clear the line after the countdown ends
+  readline.cursorTo(process.stdout, 0);
+  readline.clearLine(process.stdout, 0);
+  console.log(`Start new loop...`);
 }
 
 // Set wait time to 15 minutes (15 * 60 seconds)
 wait(15 * 60);
-  }
-  readline.cursorTo(process.stdout, 0);
-  readline.clearLine(process.stdout, 0);
-  console.log(`Start new loop...`);
 }
 
 async function main() {
